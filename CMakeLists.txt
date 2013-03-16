@@ -2,8 +2,7 @@ project(hootsim)
 
 cmake_minimum_required(VERSION 2.8)
 
-# Set GCC flags to some sensible defaults
-set(CMAKE_CXX_FLAGS "-std=c++11 -Wall -O")
+set(CMAKE_CXX_FLAGS "-std=c++11 -Wall -Wextra -Werror -pedantic")
 
 set(SIM_SOURCES
     src/SimulatableEntity.cpp
