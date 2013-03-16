@@ -20,8 +20,7 @@ void Simulator::sim(){
     sf::View currentView(sf::FloatRect(-(this->width/2), -(this->height/2), this->width, this->height));
     float currentZoom = 1;
     
-    sf::Font font;
-    font.loadFromFile("/home/sam/.fonts/ttf-dejavu-powerline/DejaVuSansMono-Powerline.ttf");
+    sf::Font font = sf::Font::getDefaultFont();
     
     // Overlay Strings
     std::string hootTitle("Hoot Hoot Simulation Alpha");

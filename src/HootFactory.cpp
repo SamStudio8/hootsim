@@ -54,14 +54,14 @@ sf::Texture& HootFactory::getTexture(int selection){
     
     if(selection == 0){
         if(!s1_loaded){
-            s1_tex.loadFromFile("/home/sam/Downloads/owl.png");
+            s1_tex.loadFromFile("../res/owl.png");
             s1_loaded = true;
         }
         return s1_tex;
     }
     else{
         if(!s2_loaded){
-            s2_tex.loadFromFile("/home/sam/Downloads/owl2.png");
+            s2_tex.loadFromFile("../res/owl2.png");
             s2_loaded = true;
         }
         return s2_tex;    
