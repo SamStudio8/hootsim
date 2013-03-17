@@ -19,6 +19,7 @@ void Simulator::sim(){
     
     sf::View currentView(sf::FloatRect(-(this->width/2), -(this->height/2), this->width, this->height));
     float currentZoom = 1;
+    float currentZoomReciprocal = 1;
     
     sf::Font font = sf::Font::getDefaultFont();
     
@@ -62,25 +63,27 @@ void Simulator::sim(){
             
             // Enable moving of view
             if(sf::Keyboard::isKeyPressed(sf::Keyboard::Left)){
-                currentView.move(-10, 0);
+                currentView.move(-10 * currentZoomReciprocal, 0);
             }
             else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Right)){
-                currentView.move(10, 0);
+                currentView.move(10 * currentZoomReciprocal, 0);
             }
             else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Up)){
-                currentView.move(0, -10);
+                currentView.move(0, -10 * currentZoomReciprocal);
             }
             else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Down)){
-                currentView.move(0, 10);
+                currentView.move(0, 10 * currentZoomReciprocal);
             }
             
             if(sf::Keyboard::isKeyPressed(sf::Keyboard::I)){
                 currentView.zoom(0.99f);
                 currentZoom *= 1.01;
+                currentZoomReciprocal = (1/currentZoom);
             }
             else if(sf::Keyboard::isKeyPressed(sf::Keyboard::O)){
                 currentView.zoom(1.01f);
                 currentZoom *= 0.99;
+                currentZoomReciprocal = (1/currentZoom);
             }
         }
         
