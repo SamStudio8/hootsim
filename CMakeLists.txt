@@ -2,7 +2,7 @@ project(hootsim)
 
 cmake_minimum_required(VERSION 2.8)
 
-set(CMAKE_CXX_FLAGS "-std=c++11 -Wall -Wextra -Werror -pedantic")
+set(CMAKE_CXX_FLAGS "-std=c++11 -Wall -Wextra")
 
 set(SIM_SOURCES
     src/SimulatableEntity.cpp
