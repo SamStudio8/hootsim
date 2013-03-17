@@ -7,19 +7,19 @@
 SimulatableEntity::SimulatableEntity(){}
 
 SimulatableEntity::~SimulatableEntity(){
-    for(int i=0; i < this->components.size(); i++){
+    for(size_t i=0; i < this->components.size(); i++){
         delete(this->components.at(i));
     }
     this->components.clear();
     
-    for(int j=0; j < this->behaviours.size(); j++){
+    for(size_t j=0; j < this->behaviours.size(); j++){
         delete(this->behaviours.at(j));
     }
     this->behaviours.clear();
 }
 
 void SimulatableEntity::tick(){
-    for(int i=0; i < this->behaviours.size(); i++){
+    for(size_t i=0; i < this->behaviours.size(); i++){
         this->behaviours.at(i)->behave();
     }
 }
@@ -42,7 +42,7 @@ void SimulatableEntity::attachBehaviour(Behaviour* b){
 }
 
 void SimulatableEntity::broadcast(Message* m){
-    for(int i=0; i < this->components.size(); i++){
+    for(size_t i=0; i < this->components.size(); i++){
         this->components.at(i)->receive(m);
     }
     delete(m);

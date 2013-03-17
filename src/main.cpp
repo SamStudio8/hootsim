@@ -1,6 +1,6 @@
 #include "Simulator.h"
 
-int main(int argc, char **argv) {
+int main() {
     Simulator s;
     s.sim();
     return EXIT_SUCCESS;

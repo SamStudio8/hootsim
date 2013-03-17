@@ -11,6 +11,7 @@ An extensible agent-based model simulator written in C++
 * **C**  Screenshot
 * **I/O** Zoom In/Out
 * **Arrows** Navigate Stage
+* **P** Pause
 * **Q** Quit
 
 <hr>

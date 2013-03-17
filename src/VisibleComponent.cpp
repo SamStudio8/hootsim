@@ -8,7 +8,7 @@
 VisibleComponent::VisibleComponent(){}
 
 VisibleComponent::~VisibleComponent(){
-    for(int i=0; i < this->sprites.size(); i++){
+    for(size_t i=0; i < this->sprites.size(); i++){
         delete(this->sprites.at(i));
     }
 }
@@ -26,7 +26,7 @@ void VisibleComponent::receive(Message* m){
         MoveMessage *mm = dynamic_cast<MoveMessage*>(m);
         
         std::vector<sf::Drawable*> *drawables = &(this->sprites);
-        for (int index=0; index < drawables->size(); index++){
+        for (size_t index=0; index < drawables->size(); index++){
             //TODO(samn) Create some sort of sf::Transformable, sf::Drawable superclass
             (dynamic_cast<sf::Transformable*>(drawables->at(index)))->move(mm->getDeltaPosition());
         }

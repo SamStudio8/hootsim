@@ -9,7 +9,7 @@ Stage::~Stage(){
 }
 
 void Stage::tick(){
-    for(long index=0; index<(long)this->entities.size(); ++index){
+    for(size_t index=0; index< this->entities.size(); ++index){
         this->entities.at(index)->tick();
     }
 }
@@ -19,9 +19,9 @@ void Stage::addSimulatableEntity(SimulatableEntity* entity){
 }
 
 void Stage::draw(sf::RenderWindow* window){
-    for(int entityIndex=0; entityIndex < this->entities.size(); entityIndex++){
+    for(size_t entityIndex=0; entityIndex < this->entities.size(); entityIndex++){
         std::vector<sf::Drawable*> *drawables = this->entities.at(entityIndex)->render();
-        for(int drawableIndex=0; drawableIndex < drawables->size(); drawableIndex++){
+        for(size_t drawableIndex=0; drawableIndex < drawables->size(); drawableIndex++){
             window->draw(*drawables->at(drawableIndex));
         }
     }
@@ -32,7 +32,7 @@ int Stage::size(){
 }
 
 void Stage::clear(){
-    for(int index=0; index < this->entities.size(); index++){
+    for(size_t index=0; index < this->entities.size(); index++){
         delete(this->entities.at(index));
     }
     this->entities.clear();

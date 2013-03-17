@@ -11,3 +11,10 @@
 *.lai
 *.la
 *.a
+
+# kdev
+build/
+.kdev4/
+hootsim.kdev4
+kdev*
+*~
