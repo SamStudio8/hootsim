@@ -2,10 +2,11 @@
 
 #include <Graphics/Font.hpp>
 #include <Graphics/Text.hpp>
+#include <Graphics/RectangleShape.hpp>
 #include <Window/Event.hpp>
 
 #include "HootFactory.h"
-#include <ResourceManager.h>
+#include "ResourceManager.h"
 
 Simulator::Simulator(){
     this->height = 600;
@@ -22,13 +23,11 @@ void Simulator::sim(){
     float currentZoom = 1;
     float currentZoomReciprocal = 1;
     
-    ResourceManager resman;
-    HootFont font = *(resman.getResource<HootFont>("../res/font/DroidSans.ttf"));
+    ResourceManager mResourceManger;
+    HootFont font = *(mResourceManger.getResource<HootFont>("../res/font/DroidSans.ttf"));
     
     // Overlay Strings
     std::string hootTitle("Hoot Hoot Simulation Alpha");
-    std::string sim_status();
-    std::string xyz_status();
     
     bool pause = false;
     while (window.isOpen()){
@@ -60,7 +59,7 @@ void Simulator::sim(){
             
             if(event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::N){
                 //TODO Get current options and pass to SimulatableEntityFactory
-                this->stage.addSimulatableEntity(HootFactory::construct(resman, currentView.getCenter()));                
+                this->stage.addSimulatableEntity(HootFactory::construct(mResourceManger, currentView.getCenter()));                
             }
             
             // Enable moving of view
@@ -108,7 +107,23 @@ void Simulator::sim(){
         sf::Text simXY("X: "+std::to_string(currentView.getCenter().x)+" - Y: "+std::to_string(-1* currentView.getCenter().y)+" - ZM: "+std::to_string(currentZoom), font, 12);
         simTicker.setPosition(1, this->height - simTicker.getGlobalBounds().height);
         simXY.setPosition(this->width - simXY.getGlobalBounds().width - 1, this->height - simXY.getGlobalBounds().height - 3);
+        
+        // Status Bar "Backgrounds"
+        sf::RectangleShape statusRectLower;
+        statusRectLower.setFillColor(sf::Color::Black);
+        statusRectLower.setSize(sf::Vector2f(this->width, simTicker.getGlobalBounds().height));
+        statusRectLower.setPosition(0, this->height - simTicker.getGlobalBounds().height);
+        
+        sf::RectangleShape statusRectUpper;
+        statusRectUpper.setFillColor(sf::Color::Black);
+        statusRectUpper.setSize(sf::Vector2f(this->width, simVersion.getGlobalBounds().height));
+        statusRectUpper.setPosition(0,0);
+        
+        // Draw on Window
+        window.draw(statusRectUpper);
         window.draw(simVersion);
+        
+        window.draw(statusRectLower);
         window.draw(simTicker);
         window.draw(simXY);
 
