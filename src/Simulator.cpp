@@ -11,7 +11,7 @@
 Simulator::Simulator(){
     this->height = 600;
     this->width = 800;
-    window.create(sf::VideoMode(this->width,this->height), "Hoot Hoot Simulator Window", sf::Style::Close);
+    window.create(sf::VideoMode(this->width,this->height), "Hoot Hoot Simulator Alpha");
     ticktime = 0;
 }
 
@@ -19,7 +19,9 @@ Simulator::~Simulator(){}
 
 void Simulator::sim(){
     
+    sf::View defaultView(sf::FloatRect(0, 0, this->width, this->height));
     sf::View currentView(sf::FloatRect(-(this->width/2), -(this->height/2), this->width, this->height));
+    
     float currentZoom = 1;
     float currentZoomReciprocal = 1;
     
@@ -51,7 +53,7 @@ void Simulator::sim(){
             }
              
             if(sf::Keyboard::isKeyPressed(sf::Keyboard::R)){
-                currentView.reset(sf::FloatRect(-400, -300, this->width, this->height));
+                currentView.reset(sf::FloatRect(-(this->width/2), -(this->height/2), this->width, this->height));
                 currentZoom = 1;
                 this->ticktime = 0;
                 this->stage.clear();
@@ -86,6 +88,13 @@ void Simulator::sim(){
                 currentZoom *= 0.99;
                 currentZoomReciprocal = (1/currentZoom);
             }
+            
+            if(event.type == sf::Event::Resized){
+                this->width = event.size.width;
+                this->height = event.size.height;
+                currentView.setSize(this->width, this->height);
+                defaultView = sf::View(sf::FloatRect(0, 0, this->width, this->height));
+            }
         }
         
         window.clear();
@@ -99,7 +108,7 @@ void Simulator::sim(){
         this->stage.draw(&window);
         
         // Return the default view
-        window.setView(window.getDefaultView());
+        window.setView(defaultView);
         
         // Simulation Information
         sf::Text simVersion(hootTitle, font, 12);
