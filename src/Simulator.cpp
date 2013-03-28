@@ -11,7 +11,7 @@
 Simulator::Simulator(){
     this->height = 600;
     this->width = 800;
-    window.create(sf::VideoMode(this->width,this->height), "Hoot Hoot Simulator Window");
+    window.create(sf::VideoMode(this->width,this->height), "Hoot Hoot Simulator Window", sf::Style::Close);
     ticktime = 0;
 }
 
