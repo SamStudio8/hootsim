@@ -2,6 +2,7 @@
 #define POSITION_MESSAGE_H_
 
 #include <System/Vector2.hpp>
+
 #include "Message.h"
 
 class PositionMessage: public Message {

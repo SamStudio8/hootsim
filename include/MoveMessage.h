@@ -21,5 +21,4 @@ private:
 };
 
 #define MOVE_MESSAGE "MOVE"
-
 #endif

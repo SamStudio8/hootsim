@@ -20,6 +20,9 @@ set(SIM_SOURCES
     src/PositionMessage.cpp
     src/MoveMessage.cpp
     
+    src/ResourceManager.cpp
+    src/ResourceLoader.cpp
+    src/HootResource.cpp
     src/main.cpp
 )
 
@@ -38,6 +41,10 @@ set(SIM_HEADERS
     include/Message.h
     include/PositionMessage.h
     include/MoveMessage.h
+    
+    include/ResourceManager.h
+    include/ResourceLoader.h
+    include/HootResource.h
 )
 
 source_group("Header Files" FILES ${SIM_HEADERS})

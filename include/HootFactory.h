@@ -3,9 +3,10 @@
 
 #include <Graphics/Texture.hpp>
 
+#include "ResourceManager.h"
+
 class HootFactory{
 public:
-    static class SimulatableEntity* construct(sf::Vector2f initialPosition);
-    static sf::Texture& getTexture(int selection);
+    static class SimulatableEntity* construct(ResourceManager &resman, sf::Vector2f initialPosition);
 };
 #endif

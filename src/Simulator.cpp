@@ -5,6 +5,7 @@
 #include <Window/Event.hpp>
 
 #include "HootFactory.h"
+#include <ResourceManager.h>
 
 Simulator::Simulator(){
     this->height = 600;
@@ -21,7 +22,8 @@ void Simulator::sim(){
     float currentZoom = 1;
     float currentZoomReciprocal = 1;
     
-    sf::Font font = sf::Font::getDefaultFont();
+    ResourceManager resman;
+    HootFont font = *(resman.getResource<HootFont>("../res/font/DroidSans.ttf"));
     
     // Overlay Strings
     std::string hootTitle("Hoot Hoot Simulation Alpha");
@@ -58,7 +60,7 @@ void Simulator::sim(){
             
             if(event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::N){
                 //TODO Get current options and pass to SimulatableEntityFactory
-                this->stage.addSimulatableEntity(HootFactory::construct(currentView.getCenter()));                
+                this->stage.addSimulatableEntity(HootFactory::construct(resman, currentView.getCenter()));                
             }
             
             // Enable moving of view

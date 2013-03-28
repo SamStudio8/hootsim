@@ -1,8 +1,9 @@
 #ifndef POSITION_COMPONENT_H_
 #define POSITION_COMPONENT_H_
 
-#include "Component.h"
 #include <System/Vector2.hpp>
+
+#include "Component.h"
 
 class PositionComponent: public Component {
 public:
