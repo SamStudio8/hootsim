@@ -93,7 +93,7 @@ void Simulator::sim(){
                 this->width = event.size.width;
                 this->height = event.size.height;
                 currentView.setSize(this->width, this->height);
-                defaultView = sf::View(sf::FloatRect(0, 0, this->width, this->height));
+                defaultView.reset(sf::FloatRect(0, 0, this->width, this->height));
             }
         }
         
