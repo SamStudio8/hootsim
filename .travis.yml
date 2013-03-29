@@ -2,10 +2,10 @@ language: cpp
 compiler:
   - gcc
 before_script:
-  - cd build/
   - wget http://www.sfml-dev.org/download/2.0-rc/SFML-2.0-rc-linux-32.tar.bz2
   - tar -xvf SFML-2.0-rc-linux-32.tar.bz2
   - sudo mv SFML-2.0-rc/* /usr/local/
+  - cmake CMakeLists.txt
 script:
   - make
 branches:
