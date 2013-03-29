@@ -4,7 +4,7 @@ compiler:
 before_script:
   - wget http://www.sfml-dev.org/download/2.0-rc/SFML-2.0-rc-linux-32.tar.bz2
   - tar -xvf SFML-2.0-rc-linux-32.tar.bz2
-  - sudo mv -n SFML-2.0-rc/* /usr/local/
+  - sudo cp -r SFML-2.0-rc/* /usr/local/
   - cmake CMakeLists.txt
 script:
   - make
