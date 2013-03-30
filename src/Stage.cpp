@@ -8,9 +8,9 @@ Stage::~Stage(){
     this->clear();
 }
 
-void Stage::tick(){
+void Stage::tick(float elapsed){
     for(size_t index=0; index< this->entities.size(); ++index){
-        this->entities.at(index)->tick();
+        this->entities.at(index)->tick(elapsed);
     }
 }
 

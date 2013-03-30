@@ -10,7 +10,7 @@ public:
     Stage();
     ~Stage();
     
-    void tick();
+    void tick(float elapsed);
     void addSimulatableEntity(class SimulatableEntity* entity);
     void draw(sf::RenderWindow* window);
     int size();

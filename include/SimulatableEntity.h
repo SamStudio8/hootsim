@@ -4,6 +4,7 @@
 #include <vector>
 
 #include <Graphics/Drawable.hpp>
+#include <System/Time.hpp>
 
 class SimulatableEntity {
 public:
@@ -15,7 +16,7 @@ public:
     
     void broadcast(class Message* m);
     
-    void tick();
+    void tick(float elapsed);
     std::vector<sf::Drawable*>* render();
     
 private:    

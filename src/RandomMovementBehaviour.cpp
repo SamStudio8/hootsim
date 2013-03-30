@@ -7,9 +7,9 @@ RandomMovementBehaviour::RandomMovementBehaviour(){}
 
 RandomMovementBehaviour::~RandomMovementBehaviour(){}
 
-void RandomMovementBehaviour::behave(){
+void RandomMovementBehaviour::behave(float elapsed){
     int direction = (rand() % 4) + 1;
-    int distance = rand() % 8;
+    float distance = (rand() % 5) + 1;
 
     int newX = 0, newY = 0;
     if(direction == 1)
@@ -21,6 +21,7 @@ void RandomMovementBehaviour::behave(){
     if(direction == 4)
         newX = -(distance);
     
+    distance *= elapsed;
     PositionMessage *pm = new PositionMessage(sf::Vector2f(newX, newY));
     this->parent->broadcast(pm);
 }

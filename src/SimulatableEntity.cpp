@@ -18,9 +18,9 @@ SimulatableEntity::~SimulatableEntity(){
     this->behaviours.clear();
 }
 
-void SimulatableEntity::tick(){
+void SimulatableEntity::tick(float elapsed){
     for(size_t i=0; i < this->behaviours.size(); i++){
-        this->behaviours.at(i)->behave();
+        this->behaviours.at(i)->behave(elapsed);
     }
 }
 

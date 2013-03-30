@@ -8,6 +8,6 @@ public:
     RandomMovementBehaviour();
     ~RandomMovementBehaviour();    
     
-    void behave();
+    void behave(float elapsed);
 };
 #endif

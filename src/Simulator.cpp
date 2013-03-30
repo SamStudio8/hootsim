@@ -31,6 +31,12 @@ void Simulator::sim(){
     // Overlay Strings
     std::string hootTitle("Hoot Hoot Simulation Alpha");
     
+    sf::Clock simClock;
+    float FRAME_RATE = 1.f/60.f;
+    float accumulator = 0.f;
+    float frameTime = 0.f;
+    float totalTime = 0.f;
+    
     bool pause = false;
     while (window.isOpen()){
         
@@ -46,10 +52,13 @@ void Simulator::sim(){
             }
             
             if(event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::P){
-                if(!pause)
+                if(!pause){
                     pause = true;
-                else
+                }
+                else{
+                    simClock.restart();
                     pause = false;
+                }
             }
              
             if(sf::Keyboard::isKeyPressed(sf::Keyboard::R)){
@@ -61,7 +70,7 @@ void Simulator::sim(){
             
             if(event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::N){
                 //TODO Get current options and pass to SimulatableEntityFactory
-                this->stage.addSimulatableEntity(HootFactory::construct(mResourceManger, currentView.getCenter()));                
+                this->stage.addSimulatableEntity(HootFactory::construct(mResourceManger, currentView.getCenter()));
             }
             
             // Enable moving of view
@@ -101,10 +110,18 @@ void Simulator::sim(){
         window.clear();
         window.setView(currentView);
         
+        frameTime = simClock.getElapsedTime().asSeconds();
+        simClock.restart();
+        
         // Simulate tick if not paused
         if(!pause){
-            this->ticktime++;
-            this->stage.tick();
+            accumulator += frameTime;
+            while(accumulator >= FRAME_RATE){
+                this->stage.tick(FRAME_RATE);
+                accumulator -= FRAME_RATE;
+                this->ticktime++;
+            }
+            totalTime += frameTime;
         }
         this->stage.draw(&window);
         
@@ -113,9 +130,16 @@ void Simulator::sim(){
         
         // Simulation Information
         sf::Text simVersion(hootTitle, font, 12);
-        sf::Text simTicker("Tick: "+std::to_string(this->ticktime)+" - Agents: "+std::to_string(this->stage.size())+" - Pause: "+std::to_string(pause), font, 12);
-        sf::Text simXY("X: "+std::to_string(currentView.getCenter().x)+" - Y: "+std::to_string(-1* currentView.getCenter().y)+" - ZM: "+std::to_string(currentZoom), font, 12);
+        simVersion.setPosition(1, 0);
+        sf::Text simTicker("Tick: "+std::to_string(this->ticktime)+
+                    " - Sec: "+std::to_string(int(totalTime))+
+                    " - Agents: "+std::to_string(this->stage.size())+
+                    " - Pause: "+std::to_string(pause), font, 12);
         simTicker.setPosition(1, this->height - simTicker.getGlobalBounds().height);
+        sf::Text simXY("X: "+std::to_string(currentView.getCenter().x)+
+                    " - Y: "+std::to_string(-1* currentView.getCenter().y)+
+                    " - ZM: "+std::to_string(currentZoom)+
+                    " - FPS: "+std::to_string(1.f/frameTime), font, 12);
         simXY.setPosition(this->width - simXY.getGlobalBounds().width - 1, this->height - simXY.getGlobalBounds().height - 3);
         
         // Status Bar "Backgrounds"
