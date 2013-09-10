@@ -1,6 +1,9 @@
 #Hootsim
 An extensible agent-based model simulator written in C++
 
+##Build Status
+[![Build Status](https://travis-ci.org/SamStudio8/Hootsim.png)](https://travis-ci.org/SamStudio8/Hootsim)
+
 ##Requirements
 ####Simple and Fast Multimedia Library v2.0
 <a href="http://www.sfml-dev.org/">http://www.sfml-dev.org/</a>
