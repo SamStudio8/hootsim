@@ -45,6 +45,7 @@ SET(SFML_INCLUDE_SEARCH_DIR
 ) 
 
 SET(SFML_LIBRARY_SEARCH_DIR 
+    
     ~/Library/Frameworks 
     /Library/Frameworks 
     /usr/local 
@@ -53,7 +54,7 @@ SET(SFML_LIBRARY_SEARCH_DIR
     /opt/local 
     /opt/csw 
     /opt 
-	${SFMLDIR}/lib
+    ${SFMLDIR}/lib
     ${SFMLDIR}/lib/vc2008 #for wxWIN vc2008(9.0) 
 ) 
 

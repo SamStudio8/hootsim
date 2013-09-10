@@ -21,3 +21,6 @@ kdev*
 
 # vim
 *.swp
+
+# CMAKE
+Makefile.cmake

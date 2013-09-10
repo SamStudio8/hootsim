@@ -13,7 +13,7 @@
 #include "HootResource.h"
 
 class SimulatableEntity* HootFactory::construct(ResourceManager &resman, sf::Vector2f initialPosition){
-
+    
     sf::Sprite *owl = new sf::Sprite();
     
     int selection = std::rand() % 2;
