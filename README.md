@@ -2,7 +2,7 @@
 An extensible agent-based model simulator written in C++
 
 ##Build Status
-[![Build Status](https://travis-ci.org/SamStudio8/Hootsim.png)](https://travis-ci.org/SamStudio8/Hootsim)
+[![Build Status](https://travis-ci.org/SamStudio8/hootsim.png)](https://travis-ci.org/SamStudio8/hootsim)
 
 ##Requirements
 ####Simple and Fast Multimedia Library v2.0
